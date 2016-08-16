@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from cStringIO import StringIO
 import re,string
 from nltk import word_tokenize
+import os, sys
 
 regex_punc = re.compile(r'[%s\n\t]' % re.escape(string.punctuation))
 regex_digit = re.compile('[\d]')
@@ -39,8 +40,11 @@ def extract_RCV1(input_zip):
 
 if __name__ == "__main__":
 
-    cd1 = extract_RCV1("/Users/yin.zheng/Downloads/RCV/rcv1_cd1.zip")
-    cd2 = extract_RCV1("/Users/yin.zheng/Downloads/RCV/rcv1_cd2.zip")
+    sys.argv.pop(0)
+    cd1_path = sys.argv[0]
+    cd2_path = sys.argv[1]
+    cd1 = extract_RCV1(cd1_path)
+    cd2 = extract_RCV1(cd2_path)
 
     chunk = ' '.join(cd1+cd2)
     print len(chunk)
