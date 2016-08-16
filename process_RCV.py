@@ -75,7 +75,7 @@ if __name__ == "__main__":
     sys.argv.pop(0)
     cd1_path = sys.argv[0]
     cd2_path = sys.argv[1]
-    path_uai = sys.argv[3]
+    path_uai = sys.argv[2]
     cd1 = extract_RCV1(cd1_path)
     cd2 = extract_RCV1(cd2_path)
 
