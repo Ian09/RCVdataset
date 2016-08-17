@@ -90,8 +90,8 @@ if __name__ == "__main__":
     print  len(words)
 
     f = open('RCV.txt', 'w')
-    unicode_words = unicode(' '.join(words), errors='ignore')
-    f.write(unicode_words)
+    unicode_words = ' '.join(words)
+    f.write(unicode_words.encode('utf-8'))
     f.close()
 
     data, count, dictionary, reverse_dictionary = build_dataset_alighwith_nitish(unicode_words.split())
