@@ -95,7 +95,7 @@ if __name__ == "__main__":
     f.write(utf8_words)
     f.close()
 
-    data, count, dictionary, reverse_dictionary = build_dataset_alighwith_nitish(utf8_words)
+    data, count, dictionary, reverse_dictionary = build_dataset_alighwith_nitish(utf8_words.split())
     count_dict = dict(count)
     f = open("RCV1_dict.txt", 'w')
     for k, v in sorted(dictionary.items(), key=lambda (k, v): v):
