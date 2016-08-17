@@ -91,10 +91,11 @@ if __name__ == "__main__":
 
     f = open('RCV.txt', 'w')
     unicode_words = ' '.join(words)
-    f.write(unicode_words.encode('utf-8'))
+    utf8_words = unicode_words.encode('utf-8')
+    f.write(utf8_words)
     f.close()
 
-    data, count, dictionary, reverse_dictionary = build_dataset_alighwith_nitish(unicode_words.split())
+    data, count, dictionary, reverse_dictionary = build_dataset_alighwith_nitish(utf8_words)
     count_dict = dict(count)
     f = open("RCV1_dict.txt", 'w')
     for k, v in sorted(dictionary.items(), key=lambda (k, v): v):
