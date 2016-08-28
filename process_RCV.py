@@ -8,37 +8,13 @@ from nltk import word_tokenize
 import os, sys
 import collections
 import numpy as np
+from Utilities import *
 
 regex_punc = re.compile(r'[%s\n\t]' % re.escape(string.punctuation))
 regex_digit = re.compile('[\d]')
 
 
-def build_dataset_alighwith_nitish(words):
-    #     f_nitish = open("/Users/yin.zheng/ml_datasets/uai2013_data/20news/vocab.txt", 'r')
-    f_nitish = open(os.path.join(path_uai, 'reuters', 'vocab_rcv2.txt'), 'r')
-    dictionary = {}
-    for nitish_word_id, nitish_word in enumerate(f_nitish):
-        dictionary[nitish_word.rstrip()] = nitish_word_id
-    f_nitish.close()
 
-    count = [['UNK', -1]]
-    count.extend([[k, v] for (k, v) in collections.Counter(words).items() if v > 5])
-    for w, _ in count:
-        if w not in dictionary:
-            dictionary[w] = len(dictionary)
-    data = list()
-    unk_count = 0
-    for word in words:
-        if word in dictionary:
-            index = dictionary[word]
-        else:
-            index = dictionary['UNK']
-            unk_count += 1
-        data.append(index)
-    count[0][1] = unk_count
-    reverse_dictionary = dict(zip(dictionary.values(), dictionary.keys()))
-    sorted_count = sorted(count, key=lambda (x, y): -y)
-    return data, sorted_count, dictionary, reverse_dictionary
 
 def foo(x):
     if regex_digit.search(x) is not None:
@@ -95,7 +71,7 @@ if __name__ == "__main__":
     f.write(utf8_words)
     f.close()
 
-    data, count, dictionary, reverse_dictionary = build_dataset_alighwith_nitish(utf8_words.split())
+    data, count, dictionary, reverse_dictionary = build_dataset_alighwith_nitish(utf8_words.split(), path_uai)
     count_dict = dict(count)
     f = open("RCV1_dict.txt", 'w')
     for k, v in sorted(dictionary.items(), key=lambda (k, v): v):
