@@ -29,7 +29,7 @@ def text_to_hist(text, dictionary):
     hist = np.zeros((voc_size,))
     for word, col_id in dictionary.items():
         if word in count:
-            hist[col_id] = count[word]
+            hist[col_id] = np.log(1+count[word])
     return hist
 
 
