@@ -41,3 +41,21 @@ def build_dataset_alighwith_nitish(words, path_uai):
     reverse_dictionary = dict(zip(dictionary.values(), dictionary.keys()))
     sorted_count = sorted(count, key=lambda (x, y): -y)
     return data, sorted_count, dictionary, reverse_dictionary
+
+def build_dataset_with_nitishRCV2(words, path_uai):
+    f_nitish = open(os.path.join(path_uai, 'reuters', 'vocab_rcv2.txt'), 'r')
+    dictionary = {}
+    for nitish_word_id, nitish_word in enumerate(f_nitish):
+        dictionary[nitish_word.rstrip()] = nitish_word_id
+    f_nitish.close()
+
+    count = []
+    count.extend([[k, v] for (k, v) in collections.Counter(words).items() if v > 5])
+    data = list()
+    for word in words:
+        if word in dictionary:
+            index = dictionary[word]
+        data.append(index)
+    reverse_dictionary = dict(zip(dictionary.values(), dictionary.keys()))
+    sorted_count = sorted(count, key=lambda (x, y): -y)
+    return data, sorted_count, dictionary, reverse_dictionary
