@@ -55,7 +55,7 @@ def build_dataset_with_nitishRCV2(words, path_uai):
     for word in words:
         if word in dictionary:
             index = dictionary[word]
-        data.append(index)
+            data.append(index)
     reverse_dictionary = dict(zip(dictionary.values(), dictionary.keys()))
     sorted_count = sorted(count, key=lambda (x, y): -y)
     return data, sorted_count, dictionary, reverse_dictionary
